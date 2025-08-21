@@ -1,0 +1,10 @@
+#ifndef __spinner__
+    #define __spinner__
+#include <string_view>
+namespace Project {
+    constexpr std::string_view VERSION_STRING = "@spinner_VERSION_MAJOR@.@spinner_VERSION_MINOR@.@spinner_VERSION_PATCH@";
+    constexpr std::string_view COMPANY_NAME = "@COMPANY@";
+    constexpr std::string_view COPYRIGHT_STRING = "@COPYRIGHT@";
+    constexpr std::string_view PROJECT_NAME = "@PROJECT_NAME@";
+}
+#endif
