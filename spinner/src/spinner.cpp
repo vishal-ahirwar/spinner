@@ -8,6 +8,9 @@
 #include <iostream>
 #include <string>
 
+#if defined(_WIN32)
+#include <windows.h>
+#endif
 fmt::color spinner_color;
 
 Spinner::Spinner(std::string message, Color color)

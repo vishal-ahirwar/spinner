@@ -4,7 +4,7 @@
 #include <thread>
 
 int main() {
-  Spinner spinner("Ding dong ding...");
+  Spinner spinner("Ding dong ding...",Spinner::Color::yellow);
   spinner.start();
   std::this_thread::sleep_for(std::chrono::seconds(5));
   spinner.stop();
