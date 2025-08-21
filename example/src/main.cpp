@@ -9,15 +9,16 @@ int main() {
   std::this_thread::sleep_for(std::chrono::seconds(5));
   spinner.stop();
 
-  spinner.setDisplayMessage("Now i'm doing some heavy work");
+  spinner.setDisplayMessage("Now i'm doing some heavy work",
+                            Spinner::Color::crimson);
   spinner.start();
   std::this_thread::sleep_for(std::chrono::seconds(5));
   spinner.stop();
 
-  spinner.setDisplayMessage("Almost Done");
+  spinner.setDisplayMessage("Almost Done", Spinner::Color::blue);
   spinner.start();
   std::this_thread::sleep_for(std::chrono::seconds(5));
   spinner.stop();
-  
+
   return 0;
 }
