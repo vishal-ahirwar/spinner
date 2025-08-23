@@ -2,13 +2,24 @@
 #define SPINNER_H
 
 #include <atomic>
+#include <mutex>
 #include <string>
 #include <thread>
 
-
 class Spinner {
  public:
-  enum class Color { none, white, black, crimson, blue, green, yellow, gray,orange,sky_blue };
+  enum class Color {
+    none,
+    white,
+    black,
+    crimson,
+    blue,
+    green,
+    yellow,
+    gray,
+    orange,
+    sky_blue
+  };
 
  public:
   Spinner(std::string message = "", Color color = Color::white);

@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <chrono>
 #include <iostream>
+#include <mutex>
 #include <string>
 
 #if defined(_WIN32)
@@ -27,7 +28,7 @@ void Spinner::start() {
 void Spinner::stop() {
   if (!mRunning.exchange(false)) return;
   if (mThread.joinable()) mThread.join();
-  fmt::print(fmt::fg(spinner_color), "\r{:<30}\n", mMessage);
+  fmt::print(fmt::fg(spinner_color), "\n");
   std::cout.flush();
 }
 
