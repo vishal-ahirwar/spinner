@@ -7,5 +7,8 @@ include(config/config.cmake)
 find_package(fmt)
 
 #@add_subproject Warning: Do not remove this line
+if(BUILD_EXAMPLE)
 add_subdirectory(example)
+endif()
+
 add_subdirectory(spinner)
