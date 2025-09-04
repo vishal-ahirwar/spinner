@@ -5,3 +5,4 @@ packages/install/
 .idea
 .build
 .install
+CMakeUserPresets.json
