@@ -1,5 +1,4 @@
-#include <spinner/include/spinner.h>
-
+#include <spinner.h>
 #include <chrono>
 #include <thread>
 

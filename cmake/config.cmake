@@ -3,9 +3,12 @@
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 option(CRT_STATIC_LINK ON)
-option(BUILD_EXAMPLE OFF)
+option(BUILD_APPLICATION OFF)
+
 message(STATUS "Static Link C Runtime ${CRT_STATIC_LINK}")
+message(STATUS "Build Application ${BUILD_APPLICATION}")
 if(CRT_STATIC_LINK)
   if (WIN32)
       set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
@@ -17,11 +20,14 @@ else()
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
   endif()
 endif()
-set(COMPANY "None")
+
+set(COMPANY "Undefined")
 string(TIMESTAMP CURRENT_YEAR "%Y")
 set(COPYRIGHT "Copyright(c) ${CURRENT_YEAR} ${COMPANY}.")
-include_directories(${CMAKE_BINARY_DIR} ${CMAKE_SOURCE_DIR})
-configure_file(config/spinnerconfig.h.in spinnerconfig.h)
+
+include_directories(${CMAKE_BINARY_DIR})
+configure_file(cmake/spinnerconfig.h.in spinnerconfig.h)
+
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     message(STATUS "Enabling secure coding features for Clang")
     add_compile_options(
@@ -31,6 +37,6 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         -Wcast-align -Wnull-dereference
         -Wformat=2 -Wformat-security
         -D_FORTIFY_SOURCE=2
-        #-Werror
+        -Werror
     )
 endif()

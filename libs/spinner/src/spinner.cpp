@@ -94,5 +94,8 @@ void Spinner::setColor() {
     case Color::sky_blue:
       spinner_color = fmt::color::sky_blue;
       break;
+    case Color::none:
+      spinner_color=fmt::color::dark_gray;
+      break;
   }
 }

@@ -3,3 +3,5 @@ packages/install/
 .vscode/
 .vs
 .idea
+.build
+.install

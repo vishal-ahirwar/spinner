@@ -1,107 +1,74 @@
-
-
 # Spinner
 
-A lightweight C++ library for displaying terminal spinners and progress animations (like `⠏ Project compiled successfully.`).
-Cross-platform and dependency-light, perfect for CLI tools and build systems.
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.linux.org/) [![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)](https://www.apple.com/macos) [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://www.microsoft.com/windows) [![Web](https://img.shields.io/badge/Web-3498DB?style=for-the-badge&logo=WebAssembly&logoColor=white)](https://webassembly.org/)
+
+A brief description of what `Spinner` does and who it's for. This project contains the application `example` and the library `spinner`.
 
 ---
 
-## ✨ Features
+## 🚀 Getting Started
 
-* Minimal and easy-to-use API
-* Multiple spinner styles (Unicode braille, ASCII, etc.)
-* Works on Linux, macOS, and Windows
-* Cross-platform with **fmt** for output formatting
-* Available on **Conan 2** package manager
-* Build from source with **cppsage**
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+Before you begin, ensure you have the following tools installed on your system:
+
+-   **C++ Compiler**: [Clang](https://clang.llvm.org/) version 20 or newer.
+-   **Project Manager**: [Leaf](https://github.com/vishal-ahirwar/leaf)
+
+### Building the Project
+
+Follow these steps to build and run the project locally.
+
+1.  **Clone the repository:**
+    ```sh
+    git clone <your-repository-url>
+    cd Spinner
+    ```
+
+2.  **Compile the code:**
+    Run leaf to build the project.
+    ```sh
+    leaf compile
+    ```
 
 ---
 
-## 📦 Installation
+## ▶️ Usage
 
-### 1. Conan 2 (Recommended)
+After a successful build, you can run the application using leaf.
 
+To run the application, execute the following command from the project root:
 ```sh
-Coming Soon...
+leaf run Spinner
 ```
 
 ---
 
-### 2. Build from Source with cppsage
+## 🛠️ Toolchain
 
-Clone and build using **cppsage**:
+This project is configured with a specific set of modern C++ tools:
 
-```sh
-git clone https://github.com/vishal-ahirwar/spinner.git
-cd spinner
-sage build
-```
+-   **Compiler**: `Clang C++20`
+-   **Project Manager**: `Leaf` for template generation and project management, which handles dependencies (via Conan) and building (via CMake and Ninja) for you.
 
-This will:
+### Tested Platforms
 
-* Build the library
-* Install dependencies (like `fmt`)
-* Produce `spinner.lib` / `libspinner.a` (depending on your OS)
-
-Then link it in your project:
-
-```cmake
-add_executable(example src/main.cpp)
-target_link_libraries(example spinner)
-```
+This Project has been tested and is expected to work on the following platforms:
+-   **Linux** (Ubuntu, Arch, etc.)
+-   **macOS**
+-   **Windows** (with MSVC or ClangCL)
+-   **Web** (via Emscripten/WebAssembly)
 
 ---
 
-## 🚀 Example
+## 🤝 Contributing
 
-```cpp
-#include <spinner/include/spinner.h>
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-#include <chrono>
-#include <thread>
-
-int main() {
-  Spinner spinner("Ding dong ding...",Spinner::Color::yellow);
-  spinner.start();
-  std::this_thread::sleep_for(std::chrono::seconds(5));
-  spinner.stop();
-
-  spinner.setDisplayMessage("Now i'm doing some heavy work",
-                            Spinner::Color::gray);
-  spinner.start();
-  std::this_thread::sleep_for(std::chrono::seconds(5));
-  spinner.stop();
-
-  spinner.setDisplayMessage("Almost Done", Spinner::Color::sky_blue);
-  spinner.start();
-  std::this_thread::sleep_for(std::chrono::seconds(5));
-  spinner.stop();
-
-  return 0;
-}
-```
-
-Output:
-
-<img width="574" height="75" alt="image" src="https://github.com/user-attachments/assets/7e07349b-95a2-496f-9f32-e03cac02c252" />
-
-
----
-
-## 🛠 Development
-
-To run the provided example:
-
-```sh
-sage build example
-```
-
----
+Please refer to the project's issue tracker and pull request guidelines.
 
 ## 📄 License
 
-MIT License © 2025 [Vishal Ahirwar](https://github.com/vishal-ahirwar)
-
----
-
+This project is licensed under the MIT License - see the `LICENSE.md` file for details.
