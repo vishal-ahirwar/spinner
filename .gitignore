@@ -6,3 +6,4 @@ packages/install/
 .build
 .install
 CMakeUserPresets.json
+build.log

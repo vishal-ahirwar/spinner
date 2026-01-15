@@ -6,41 +6,52 @@
 #include <string>
 #include <thread>
 
-class Spinner {
- public:
-  enum class Color {
-    none,
-    white,
-    black,
-    crimson,
-    blue,
-    green,
-    yellow,
-    gray,
-    orange,
-    sky_blue
-  };
+class Spinner
+{
+  public:
+    enum class Color
+    {
+        none,
+        white,
+        black,
+        crimson,
+        blue,
+        green,
+        yellow,
+        gray,
+        orange,
+        sky_blue
+    };
 
- public:
-  Spinner(std::string message = "", Color color = Color::white);
+  public:
+    Spinner(std::string message = "", Color color = Color::white);
 
-  void start();
+    void start();
 
-  void stop();
+    void stop();
 
-  void setDisplayMessage(std::string, Color color = Color::none);
+    void setDisplayMessage(std::string, Color color = Color::none);
 
-  ~Spinner() { stop(); }
+    bool isRunning() const
+    {
+        return mRunning.load();
+    }
 
- private:
-  void run();
-  void setColor();
-  static void setupConsole();
+    ~Spinner()
+    {
+        stop();
+    }
 
-  std::string mMessage;
-  std::atomic<bool> mRunning;
-  std::thread mThread;
-  Color mColor{};
+  private:
+    void        run();
+    void        setColor();
+    static void setupConsole();
+
+    std::string       mMessage;
+    std::atomic<bool> mRunning;
+    std::thread       mThread;
+    Color             mColor{};
+    static std::mutex sMutex;
 };
 
-#endif  // SPINNER_H
+#endif // SPINNER_H
