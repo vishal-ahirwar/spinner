@@ -14,18 +14,29 @@
 #endif
 fmt::color spinner_color;
 
+std::atomic<bool> Spinner::mAlreadyShown{false};
+
 Spinner::Spinner(std::string message, Color color)
     : mMessage(std::move(message)), mRunning(false), mColor(color) {
   setColor();
 }
 
+Spinner::~Spinner()
+{
+    stop();
+
+}
+
 void Spinner::start() {
+    if (mAlreadyShown)return;
+    mAlreadyShown = true;
   if (mRunning.exchange(true)) return;
   setupConsole();
   mThread = std::thread([this] { run(); });
 };
 
 void Spinner::stop() {
+    mAlreadyShown = false;
   if (!mRunning.exchange(false)) return;
   if (mThread.joinable()) mThread.join();
   fmt::print(fmt::fg(spinner_color), "\n");
@@ -33,6 +44,7 @@ void Spinner::stop() {
 }
 
 void Spinner::run() {
+
   static const char* frames[] = {"⠋", "⠙", "⠹", "⠸", "⠼",
                                  "⠴", "⠦", "⠧", "⠇", "⠏"};
   size_t i = 0;

@@ -23,14 +23,13 @@ class Spinner {
 
  public:
   Spinner(std::string message = "", Color color = Color::white);
-
   void start();
 
   void stop();
 
   void setDisplayMessage(std::string, Color color = Color::none);
 
-  ~Spinner() { stop(); }
+  ~Spinner();
 
  private:
   void run();
@@ -41,6 +40,7 @@ class Spinner {
   std::atomic<bool> mRunning;
   std::thread mThread;
   Color mColor{};
+  static std::atomic<bool> mAlreadyShown;
 };
 
 #endif  // SPINNER_H
